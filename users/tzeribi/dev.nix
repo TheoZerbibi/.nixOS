@@ -9,6 +9,6 @@
     gtest
     lcov
     vcpkg-tool
-    docker-compose-plugin
+    docker-compose
   ];
 }
