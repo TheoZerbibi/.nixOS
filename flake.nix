@@ -21,7 +21,7 @@
           state = "24.11";
 
           users = {
-            raftario = {
+            tzeribi = {
               groups = ["wheel"];
               shell = "zsh";
             };
