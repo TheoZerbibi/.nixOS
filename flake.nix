@@ -22,7 +22,7 @@
 
           users = {
             tzeribi = {
-              groups = ["wheel"];
+              groups = ["wheel" "docker"];
               shell = "zsh";
             };
           };
