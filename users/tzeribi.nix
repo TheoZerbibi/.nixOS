@@ -6,6 +6,7 @@
     ./tzeribi/git.nix
     ./tzeribi/hyprland.nix
     ./tzeribi/python.nix
+    ./tzeribi/vscode.nix
     ./tzeribi/zsh.nix
   ];
 }
