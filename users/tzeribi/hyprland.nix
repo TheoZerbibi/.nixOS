@@ -89,7 +89,7 @@
         "SUPER, q, killactive,"
 
         "SUPER, t, exec, ghostty"
-        "SUPER, e, exec, zeditor"
+        "SUPER, e, exec, vscode"
         "SUPER, b, exec, firefox"
         "SUPER, d, exec, vesktop"
         "SUPER, s, exec, spotify"
