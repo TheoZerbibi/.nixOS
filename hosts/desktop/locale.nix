@@ -2,7 +2,6 @@
   console.useXkbConfig = true;
   services.xserver.xkb = {
     layout = "us";
-    variant = "fr";
     options = "alt_shift_toggle";
   };
   services.xserver.enable = false;
