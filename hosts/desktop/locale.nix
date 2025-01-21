@@ -6,6 +6,11 @@
   };
   services.xserver.enable = false;
 
+  services.docker = {
+    enable = true;
+    addGroup = true;
+  };
+
   time.timeZone = "Europe/Paris";
   i18n = {
     defaultLocale = "en_US.UTF-8";
