@@ -170,6 +170,14 @@
             color: @text;
             background: @base;
           }
+
+          .modules-right > .module {
+            margin-right: 16px;
+          }
+
+          .modules-right > .module:last-child {
+            margin-right: 0;
+          }
         '';
       }
     ];
