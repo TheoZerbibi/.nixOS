@@ -38,8 +38,7 @@
 
     settings = {
       input = {
-        kb_layout = "ca";
-        kb_variant = "fr";
+        kb_layout = "us";
         kb_options = "alt_shift_toggle";
         numlock_by_default = true;
       };
@@ -89,16 +88,13 @@
         "SUPER, q, killactive,"
 
         "SUPER, t, exec, ghostty"
-        "SUPER, e, exec, vscode"
+        "SUPER, e, exec, code"
         "SUPER, b, exec, firefox"
-        "SUPER, d, exec, vesktop"
-        "SUPER, s, exec, spotify"
       ];
 
       exec-once = [
         "systemctl --user enable --now hyprpolkitagent.service"
         "waybar"
-        "1password --silent"
       ];
     };
   };
