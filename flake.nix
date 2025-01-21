@@ -1,40 +1,101 @@
 {
-  description = "NixOS config with Hyprland + Home Manager + a 'root' user named theo";
-
   inputs = {
-    # Nixpkgs unstable (pour avoir la version la plus récente)
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # Home Manager
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      # On suit la même révision de nixpkgs
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Hyprland officiel
-    hyprland.url = "github:hyprwm/Hyprland";
+    catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, hyprland, ... }:
-    let
-      # Architecture de la machine
-      system = "x86_64-linux";
-    in
-    {
-      # Notre configuration NixOS s’appelle "nixos"
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
+  outputs = inputs @ {
+    home-manager,
+    catppuccin,
+    ...
+  }: {
+    nixosConfigurations = let
+      hosts = {
+        desktop = {
+          system = "x86_64-linux";
+          state = "24.11";
 
-        # On importe configuration.nix (et indirectement les autres)
-        modules = [
-          ./configuration.nix
-        ];
-
-        # Pour permettre d'accéder à `inputs` depuis configuration.nix
-        specialArgs = {
-          inherit inputs;
+          users = {
+            raftario = {
+              groups = ["wheel"];
+              shell = "zsh";
+            };
+          };
         };
       };
-    };
+      f = {
+        map = builtins.mapAttrs;
+      };
+    in
+      f.map (hostname: {
+        system,
+        state,
+        users,
+      }:
+        inputs.nixpkgs.lib.nixosSystem
+        (let
+          options = {
+            inherit system;
+            config.allowUnfree = true;
+          };
+          nixpkgs = {
+            stable = import inputs.nixpkgs options;
+            unstable = import inputs.nixpkgs-unstable options;
+          };
+
+          specialArgs = {inherit nixpkgs hostname system state inputs;};
+        in {
+          inherit system specialArgs;
+
+          modules = [
+            ./configuration.nix
+            ./hosts/${hostname}.nix
+            catppuccin.nixosModules.catppuccin
+            {
+              system.stateVersion = state;
+              programs.zsh.enable = true;
+              users.defaultUserShell = nixpkgs.stable.zsh;
+            }
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = specialArgs;
+
+              home-manager.users =
+                f.map (username: {...}: {
+                  home = {
+                    inherit username;
+                    homeDirectory = "/home/${username}";
+                    stateVersion = state;
+                  };
+
+                  imports = [
+                    ./users/${username}.nix
+                    catppuccin.homeManagerModules.catppuccin
+                  ];
+                })
+                users;
+
+              users.users =
+                f.map (username: {
+                  groups,
+                  shell,
+                }: {
+                  isNormalUser = true;
+                  extraGroups = groups;
+                  shell = nixpkgs.stable.${shell};
+                })
+                users;
+            }
+          ];
+        }))
+      hosts;
+  };
 }
