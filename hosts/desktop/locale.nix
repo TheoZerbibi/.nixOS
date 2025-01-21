@@ -6,9 +6,10 @@
   };
   services.xserver.enable = false;
 
-  services.docker = {
+  virtualisation.docker.enable = true;
+  virtualisation.docker.rootless = {
     enable = true;
-    addGroup = true;
+    setSocketVariable = true;
   };
 
   time.timeZone = "Europe/Paris";
