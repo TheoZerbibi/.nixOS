@@ -8,7 +8,6 @@
     doxygen
     gtest
     lcov
-    vcpkg
     vcpkg-tool
   ];
 }
