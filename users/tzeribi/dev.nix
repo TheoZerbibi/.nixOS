@@ -2,6 +2,10 @@
   home.packages = with nixpkgs.unstable; [
     clang-tools
     cmake
+    gnumake
+    libclang
+    libgcc
+    valgrind
     codespell
     conan
     cppcheck
