@@ -9,6 +9,7 @@
       "flakes"
     ];
   };
+
   environment.systemPackages = with pkgs; [
     curl
     git

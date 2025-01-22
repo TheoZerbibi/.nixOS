@@ -1,10 +1,12 @@
 {
   imports = [
-    ./desktop/boot.nix
-    ./desktop/locale.nix
-    ./desktop/net.nix
-    ./desktop/gpu.nix
     ./desktop/audio.nix
+    ./desktop/bluetooth.nix
+    ./desktop/boot.nix
+    ./desktop/gpu.nix
+    ./desktop/locale.nix
+    ./desktop/module.nix
+    ./desktop/net.nix
     ./desktop/security.nix
   ];
 }
