@@ -9,7 +9,7 @@ stdenvNoCC.mkDerivation (attrs: {
   src = requireFile {
     name = "berkeley-mono-variable.ttf";
     sha256 = "0gqnzm444i0ii2928mz09in9y51206wvwzgrj63qj5kfz7kv9gvy";
-    url = "https://usgraphics.com";
+    url    = "file:///etc/nixos/modules/berkeley-mono-variable.ttf";
   };
 
   dontUnpack = true;
