@@ -3,8 +3,6 @@
     clang-tools
     cmake
     gnumake
-    libclang
-    libgcc
     valgrind
     codespell
     conan
