@@ -118,9 +118,9 @@
     pkgs.noto-fonts
     pkgs.noto-fonts-color-emoji
     pkgs.noto-fonts-emoji
-    pkgs.noto-fonts-symbols
     pkgs.nerd-fonts
-    fpkgs.ont-awesome
+    pkgs.font-awesome
     pkgs.material-design-icons
+    noto-fonts-symbols
   ];
 }
