@@ -78,6 +78,12 @@
         "systemctl --user enable --now hyprpolkitagent.service"
         "waybar"
       ];
+
+      layerrule = [
+        "blur, waybar"
+        "ignorezero, waybar"
+        "ignorealpha 0.5, waybar"
+      ];
     };
   };
 
@@ -117,7 +123,4 @@
     fpkgs.ont-awesome
     pkgs.material-design-icons
   ];
-  layerrule = blur, waybar
-  layerrule = ignorezero, waybar
-  layerrule = ignorealpha 0.5, waybar
 }
