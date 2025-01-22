@@ -81,24 +81,24 @@
     };
   };
 
-  home.sessionCommands = [
-    ''
-      mkdir -p $HOME/.config/waybar/scripts
-      if [ ! -f $HOME/.config/waybar/config.jsonc ]; then
-        cp /etc/nixos/modules/waybar/config.jsonc $HOME/.config/waybar/
+  home.file.".xprofile".text = ''
+    mkdir -p $HOME/.config/waybar/scripts
+    if [ ! -f $HOME/.config/waybar/config.jsonc ]; then
+      cp /etc/nixos/modules/waybar/config.jsonc $HOME/.config/waybar/
+    fi
+    if [ ! -f $HOME/.config/waybar/style.css ]; then
+      cp /etc/nixos/modules/waybar/style.css $HOME/.config/waybar/
+    fi
+    for f in /etc/nixos/modules/waybar/scripts/*.{sh,js}; do
+      base=$(basename "$f")
+      if [ ! -f "$HOME/.config/waybar/scripts/$base" ]; then
+        cp "$f" "$HOME/.config/waybar/scripts/$base"
+        chmod +x "$HOME/.config/waybar/scripts/$base"
       fi
-      if [ ! -f $HOME/.config/waybar/style.css ]; then
-        cp /etc/nixos/modules/waybar/style.css $HOME/.config/waybar/
-      fi
-      for f in /etc/nixos/modules/waybar/scripts/*.{sh,js}; do
-        base=$(basename "$f")
-        if [ ! -f "$HOME/.config/waybar/scripts/$base" ]; then
-          cp "$f" "$HOME/.config/waybar/scripts/$base"
-          chmod +x "$HOME/.config/waybar/scripts/$base"
-        fi
-      done
-    ''
-  ];
+    done
+
+    wal -i $HOME/.cache/wal/colors-waybar.css
+  '';
 
   programs.waybar.enable = true;
   services.mako.enable = true;
