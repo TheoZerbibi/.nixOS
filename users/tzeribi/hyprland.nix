@@ -4,6 +4,15 @@
     ./hyprland-binds.nix
   ];
 
+  home.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-emoji
+    noto-fonts-symbols
+    nerd-fonts
+    font-awesome
+    material-design-icons
+  ];
+
   catppuccin = {
     enable = true;
     flavor = "macchiato";
@@ -111,5 +120,13 @@
     pkgs.public-sans
     pkgs.noto-fonts
     pkgs.noto-fonts-color-emoji
+    pkgs.noto-fonts-emoji
+    pkgs.noto-fonts-symbols
+    pkgs.nerd-fonts
+    fpkgs.ont-awesome
+    pkgs.material-design-icons
   ];
+  layerrule = blur, waybar
+  layerrule = ignorezero, waybar
+  layerrule = ignorealpha 0.5, waybar
 }
