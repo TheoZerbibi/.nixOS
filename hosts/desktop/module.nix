@@ -4,5 +4,6 @@
     hyprpicker
     pywal
     swaynotificationcenter
+    pavucontrol
   ];
 }
