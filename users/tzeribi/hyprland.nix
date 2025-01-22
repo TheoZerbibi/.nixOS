@@ -4,15 +4,6 @@
     ./hyprland-binds.nix
   ];
 
-  home.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-emoji
-    noto-fonts-symbols
-    nerd-fonts
-    font-awesome
-    material-design-icons
-  ];
-
   catppuccin = {
     enable = true;
     flavor = "macchiato";
