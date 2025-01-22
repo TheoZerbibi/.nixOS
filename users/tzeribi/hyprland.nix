@@ -2,6 +2,7 @@
 {
   imports = [
     ./hyprland-binds.nix
+    ./fontconfig.nix
   ];
 
   catppuccin = {
@@ -15,24 +16,6 @@
     mako.enable = true;
     waybar.enable = true;
   };
-
-  fonts.fontconfig = {
-    enable = true;
-    defaultFonts = {
-      sansSerif = ["Public Sans" "Noto Sans"];
-      serif     = ["EB Garamond" "Noto Serif"];
-      monospace = ["Berkeley Mono Variable" "Noto Sans Mono"];
-      emoji     = ["Noto Color Emoji"];
-    };
-  };
-
-  xdg.configFile."fontconfig/fonts.conf".text = ''
-    <?xml version='1.0'?>
-    <!DOCTYPE fontconfig SYSTEM 'urn:fontconfig:fonts.dtd'>
-    <fontconfig>
-      <include ignore_missing="yes" prefix="xdg">fontconfig/conf.d</include>
-    </fontconfig>
-  '';
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -118,9 +101,7 @@
     pkgs.noto-fonts
     pkgs.noto-fonts-color-emoji
     pkgs.noto-fonts-emoji
-    pkgs.nerd-fonts
     pkgs.font-awesome
     pkgs.material-design-icons
-    noto-fonts-symbols
   ];
 }
