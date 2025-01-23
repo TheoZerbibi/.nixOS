@@ -11,7 +11,6 @@
         "WAL_COLORS_PATH=/home/tzeribi/.cache/wal/colors-hyprland"
       ];
 
-      source = "$WAL_COLORS_PATH";
 
       monitor = "DP-1, 2560x1440@165, 0x0, 1";
 

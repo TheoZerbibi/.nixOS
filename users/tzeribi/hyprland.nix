@@ -31,7 +31,6 @@
   home.file = lib.mkMerge [
     {
       ".config/waybar/config.jsonc".source = ../modules/waybar/config.jsonc;
-      ".config/waybar/style.css".source = ../modules/waybar/style.css;
     }
     {
       ".config/waybar/scripts/colorpicker.sh".source = ../modules/waybar/scripts/colorpicker.sh;
