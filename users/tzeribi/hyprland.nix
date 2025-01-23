@@ -30,12 +30,8 @@
 
   home.file = lib.mkMerge [
     {
-<<<<<<< Updated upstream
-      ".config/waybar/config.jsonc".source = ../modules/waybar/config.jsonc;
-=======
-      ".config/waybar/config.jsonc".source = dules/waybar/config.jsonc;
+      ".config/waybar/config.jsonc".source = /etc/nixos/modules/waybar/config.jsonc;
       ".config/waybar/style.css".source = /etc/nixos/moduleswaybar/style.css;
->>>>>>> Stashed changes
     }
     {
       ".config/waybar/scripts/colorpicker.sh".source = /etc/nixos/moduleswaybar/scripts/colorpicker.sh;
