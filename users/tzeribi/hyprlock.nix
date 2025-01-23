@@ -4,7 +4,7 @@
     enable = true;
 
     settings = {
-      source = "${lib.getEnv "HOME"}/.cache/wal/colors-hyprland";
+      source = "$HOME/.cache/wal/colors-hyprland";
 
       background = {
         monitor = "";
