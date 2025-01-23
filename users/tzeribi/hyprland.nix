@@ -31,15 +31,14 @@
   home.file = lib.mkMerge [
     {
       ".config/waybar/config.jsonc".source = /etc/nixos/modules/waybar/config.jsonc;
-      ".config/waybar/style.css".source = /etc/nixos/moduleswaybar/style.css;
     }
     {
-      ".config/waybar/scripts/colorpicker.sh".source = /etc/nixos/moduleswaybar/scripts/colorpicker.sh;
-      ".config/waybar/scripts/wallpapers.sh".source = /etc/nixos/moduleswaybar/scripts/wallpapers.sh;
+      ".config/waybar/scripts/colorpicker.sh".source = /etc/nixos/modules/waybar/scripts/colorpicker.sh;
+      ".config/waybar/scripts/wallpapers.sh".source = /etc/nixos/modules/waybar/scripts/wallpapers.sh;
     }
     {
-      ".config/wofi/config".source = /etc/nixos/moduleswofi/config;
-      ".config/wofi/style.css".source = /etc/nixos/moduleswofi/style.css;
+      ".config/wofi/config".source = /etc/nixos/modules/wofi/config;
+      ".config/wofi/style.css".source = /etc/nixos/modules/wofi/style.css;
     }
   ];
 
