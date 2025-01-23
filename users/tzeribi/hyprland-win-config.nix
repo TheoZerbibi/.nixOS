@@ -5,7 +5,7 @@
     xwayland.enable = true;
 
     settings = {
-      source = "${HOME}/.cache/wal/colors-hyprland";
+      source = "${config.users.users.username.home}/.cache/wal/colors-hyprland";
       monitor = "DP-1, 2560x1440@165, 0x0, 1";
 
       input = {
