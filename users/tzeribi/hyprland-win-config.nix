@@ -1,11 +1,17 @@
 { lib, ... }:
 {
+  env = [
+    "XCURSOR_THEME,Bibata-Modern-Classic"
+    "XCURSOR_SIZE,12"
+    "WAL_COLORS_PATH,${config.home.homeDirectory}/.cache/wal/colors-hyprland"
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
 
     settings = {
-      source = "${config.users.users.username.home}/.cache/wal/colors-hyprland";
+      source = "$WAL_COLORS_PATH";
       monitor = "DP-1, 2560x1440@165, 0x0, 1";
 
       input = {
@@ -84,11 +90,6 @@
         "swaync"
         "swaync-client -df"
         "pactl set-sink-mute @DEFAULT_SINK@ 0"
-      ];
-
-      env = [
-        "XCURSOR_THEME,Bibata-Modern-Classic"
-        "XCURSOR_SIZE,12"
       ];
 
       layerrule = [
