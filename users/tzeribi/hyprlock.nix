@@ -4,8 +4,6 @@
     enable = true;
 
     settings = {
-      source = "$HOME/.cache/wal/colors-hyprland";
-
       background = {
         monitor = "";
         path = "$wallpaper";
