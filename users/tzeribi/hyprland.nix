@@ -2,6 +2,7 @@
 {
   imports = [
     ./hyprland-binds.nix
+    ./hyprland-win-config.nix
   ];
 
   catppuccin = {
@@ -20,119 +21,41 @@
     enable = true;
     defaultFonts = {
       sansSerif = ["Public Sans" "Noto Sans" "DejaVu Sans"];
-      serif = [ "EB Garamond" "Noto Serif" "DejaVu Serif"];
-      monospace = [ "Berkeley Mono Variable" "Noto Sans Mono" "DejaVu Sans Mono"];
-      emoji = [ "Noto Color Emoji" "Twemoji" "Symbola"];
+      serif = ["EB Garamond" "Noto Serif" "DejaVu Serif"];
+      monospace = ["Berkeley Mono Variable" "Noto Sans Mono" "DejaVu Sans Mono"];
+      emoji = ["Noto Color Emoji" "Twemoji" "Symbola"];
     };
   };
 
-  xdg.configFile."fontconfig/fonts.conf".text = ''
-    <?xml version='1.0'?>
-    <!DOCTYPE fontconfig SYSTEM 'urn:fontconfig:fonts.dtd'>
-    <fontconfig>
-      <match target="font">
-        <edit name="antialias" mode="assign">
-          <bool>true</bool>
-        </edit>
-      </match>
-      <match target="font">
-        <edit name="hintstyle" mode="assign">
-          <const>hintslight</const>
-        </edit>
-      </match>
-      <match target="font">
-        <edit name="rgba" mode="assign">
-          <const>rgb</const>
-        </edit>
-      </match>
-    </fontconfig>
-  '';
-
-  wayland.windowManager.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-
-    settings = {
-      input = {
-        kb_layout = "us";
-        kb_options = "alt_shift_toggle";
-        numlock_by_default = true;
-      };
-
-      general = {
-        layout = "master";
-        resize_on_border = true;
-        border_size = 2;
-        gaps_in = 8;
-        gaps_out = 16;
-        "col.inactive_border" = "$base";
-        "col.active_border"   = "$teal";
-      };
-
-      master.mfact = 0.66;
-      group.auto_group = false;
-      input.follow_mouse = 2;
-
-      group = {
-        "col.border_inactive" = "$base";
-        "col.border_active"   = "$teal";
-      };
-
-      group.groupbar = {
-        enabled = true;
-        font_size = 12;
-        height = 24;
-        text_color = "$text";
-        "col.active"   = "$surface0";
-        "col.inactive" = "$base";
-      };
-      misc.font_family = "Public Sans";
-
-      exec-once = [
-        "systemctl --user enable --now hyprpolkitagent.service"
-        "waybar"
-      ];
-
-      layerrule = [
-        "blur, waybar"
-        "ignorezero, waybar"
-        "ignorealpha 0.5, waybar"
-      ];
-    };
-  };
-
-  home.file.".xprofile".text = ''
-    mkdir -p $HOME/.config/waybar/scripts
-    if [ ! -f $HOME/.config/waybar/config.jsonc ]; then
-      cp /etc/nixos/modules/waybar/config.jsonc $HOME/.config/waybar/
-    fi
-    if [ ! -f $HOME/.config/waybar/style.css ]; then
-      cp /etc/nixos/modules/waybar/style.css $HOME/.config/waybar/
-    fi
-    for f in /etc/nixos/modules/waybar/scripts/*.{sh,js}; do
-      base=$(basename "$f")
-      if [ ! -f "$HOME/.config/waybar/scripts/$base" ]; then
-        cp "$f" "$HOME/.config/waybar/scripts/$base"
-        chmod +x "$HOME/.config/waybar/scripts/$base"
-      fi
-    done
-
-    wal -i $HOME/.cache/wal/colors-waybar.css
-  '';
+  home.file = lib.mkMerge [
+    {
+      ".config/waybar/config.jsonc".source = ../modules/waybar/config.jsonc;
+      ".config/waybar/style.css".source = ../modules/waybar/style.css;
+    }
+    {
+      ".config/waybar/scripts/colorpicker.sh".source = ../modules/waybar/scripts/colorpicker.sh;
+      ".config/waybar/scripts/wallpapers.sh".source = ../modules/waybar/scripts/wallpapers.sh;
+    }
+    {
+      ".config/wofi/config".source = ../modules/wofi/config;
+      ".config/wofi/style.css".source = ../modules/wofi/style.css;
+    }
+  ];
 
   programs.waybar.enable = true;
   services.mako.enable = true;
+
   home.packages = with pkgs; [
     hyprpolkitagent
-    (pkgs.callPackage ../../modules/berkeley-mono.nix {})
-    (pkgs.google-fonts.override {
+    (callPackage ../../modules/berkeley-mono.nix {})
+    (google-fonts.override {
       fonts = [ "EB Garamond" ];
     })
-    pkgs.public-sans
-    pkgs.noto-fonts
-    pkgs.noto-fonts-color-emoji
-    pkgs.noto-fonts-emoji
-    pkgs.font-awesome
-    pkgs.material-design-icons
+    public-sans
+    noto-fonts
+    noto-fonts-color-emoji
+    noto-fonts-emoji
+    font-awesome
+    material-design-icons
   ];
 }

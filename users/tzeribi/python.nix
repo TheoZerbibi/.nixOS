@@ -1,5 +1,8 @@
-{nixpkgs, ...}: {
+{nixpkgs, pkgs, lib, ...}: {
   home.packages = with nixpkgs.unstable; [
-    python3
+    (pkgs.python3.withPackages (ps: with ps; [
+      pip
+      pywalfox
+    ]))
   ];
 }

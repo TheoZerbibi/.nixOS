@@ -5,6 +5,8 @@
     ./tzeribi/ghostty.nix
     ./tzeribi/git.nix
     ./tzeribi/hyprland.nix
+    ./tzeribi/hyprlock.nix
+    ./tzeribi/hypridle.nix
     ./tzeribi/python.nix
     ./tzeribi/vscode.nix
     ./tzeribi/zsh.nix
