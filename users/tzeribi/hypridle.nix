@@ -1,10 +1,13 @@
 { lib, ... }:
 {
+    env = [
+        "WAL_COLORS_PATH=/home/tzeribi/.cache/wal/colors-hyprland"
+    ];
   programs.hypridle = {
     enable = true;
 
     settings = {
-      source = "${lib.getEnv "HOME"}/.cache/wal/colors-hyprland";
+      source = "$WAL_COLORS_PATH";
 
       general = {
         lock_cmd = "pidof hyprlock || hyprlock";
@@ -15,7 +18,7 @@
         {
           timeout = 270;
           on_timeout = ''
-            source ${lib.getEnv "HOME"}/.cache/wal/colors.sh
+            source "$WAL_COLORS_PATH"
             notify-send "System" "You are about to be locked out!" -i $wallpaper
           '';
         }
@@ -24,8 +27,8 @@
           on_timeout = "loginctl lock-session";
           on_resume = ''
             sleep 2
-            source ${lib.getEnv "HOME"}/.cache/wal/colors.sh
-            notify-send "System" "Unlocked! Hey ${lib.getEnv "USER"}" -i $wallpaper
+            source "$WAL_COLORS_PATH"
+            notify-send "System" "Unlocked! Hey Théo" -i $wallpaper
           '';
         }
         {
