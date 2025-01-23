@@ -3,6 +3,7 @@
   imports = [
     ./hyprland-binds.nix
     ./hyprland-win-config.nix
+    ./hypridle.nix
   ];
 
   catppuccin = {

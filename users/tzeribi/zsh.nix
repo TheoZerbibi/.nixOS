@@ -50,7 +50,6 @@
     bat
     lsd
     ripgrep
-
     p7zip
   ];
 
