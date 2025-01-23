@@ -7,7 +7,6 @@
     pavucontrol
     wlogout
     hypridle
-    hyprlock
     wofi
   ];
 }
