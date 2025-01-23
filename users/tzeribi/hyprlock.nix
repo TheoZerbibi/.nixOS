@@ -79,7 +79,7 @@
         }
         {
           monitor = "";
-          text = "<i>Hello</i> <b>${lib.getEnv "USER"}</b>";
+          text = "<i>Hello</i> <b>$USER</b>";
           color = "$color5";
           font_size = 40;
           font_family = "CodeNewRoman Nerd Font Propo";
