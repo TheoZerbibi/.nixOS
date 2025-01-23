@@ -35,6 +35,7 @@
     {
       ".config/waybar/scripts/colorpicker.sh".source = ../../modules/waybar/scripts/colorpicker.sh;
       ".config/waybar/scripts/wallpapers.sh".source = ../../modules/waybar/scripts/wallpapers.sh;
+      ".config/waybar/scripts/refresh.sh".source = ../../modules/waybar/scripts/refresh.sh;
     }
     {
       ".config/wofi/config".source = ../../modules/wofi/config;

@@ -8,5 +8,7 @@
     wlogout
     hyprlock
     wofi
+    rofi-wayland
+    libnotify
   ];
 }
