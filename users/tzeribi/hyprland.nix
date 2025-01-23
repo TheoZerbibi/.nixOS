@@ -49,7 +49,7 @@
   home.packages = with pkgs; [
     hyprpolkitagent
     hypridle
-    (callPackage ..//etc/nixos/modulesberkeley-mono.nix {})
+    (callPackage /etc/nixos/modules/berkeley-mono.nix {})
     (google-fonts.override {
       fonts = [ "EB Garamond" ];
     })
