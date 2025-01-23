@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, ... }:
 {
   env = [
     "XCURSOR_THEME,Bibata-Modern-Classic"
