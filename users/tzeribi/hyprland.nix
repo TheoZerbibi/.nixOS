@@ -30,15 +30,20 @@
 
   home.file = lib.mkMerge [
     {
+<<<<<<< Updated upstream
       ".config/waybar/config.jsonc".source = ../modules/waybar/config.jsonc;
+=======
+      ".config/waybar/config.jsonc".source = dules/waybar/config.jsonc;
+      ".config/waybar/style.css".source = /etc/nixos/moduleswaybar/style.css;
+>>>>>>> Stashed changes
     }
     {
-      ".config/waybar/scripts/colorpicker.sh".source = ../modules/waybar/scripts/colorpicker.sh;
-      ".config/waybar/scripts/wallpapers.sh".source = ../modules/waybar/scripts/wallpapers.sh;
+      ".config/waybar/scripts/colorpicker.sh".source = /etc/nixos/moduleswaybar/scripts/colorpicker.sh;
+      ".config/waybar/scripts/wallpapers.sh".source = /etc/nixos/moduleswaybar/scripts/wallpapers.sh;
     }
     {
-      ".config/wofi/config".source = ../modules/wofi/config;
-      ".config/wofi/style.css".source = ../modules/wofi/style.css;
+      ".config/wofi/config".source = /etc/nixos/moduleswofi/config;
+      ".config/wofi/style.css".source = /etc/nixos/moduleswofi/style.css;
     }
   ];
 
@@ -48,7 +53,7 @@
   home.packages = with pkgs; [
     hyprpolkitagent
     hypridle
-    (callPackage ../../modules/berkeley-mono.nix {})
+    (callPackage ..//etc/nixos/modulesberkeley-mono.nix {})
     (google-fonts.override {
       fonts = [ "EB Garamond" ];
     })
