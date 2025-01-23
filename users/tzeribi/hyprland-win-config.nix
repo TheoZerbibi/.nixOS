@@ -9,7 +9,7 @@
         "XCURSOR_THEME=Bibata-Modern-Classic"
         "XCURSOR_SIZE=12"
       ];
-      source = "$HOME/.cache/wal/colors-hyprland";
+      source = lib.mkDefault "$HOME/.cache/wal/colors-hyprland";
       monitor = "DP-1, 2560x1440@165, 0x0, 1";
 
       input = {
