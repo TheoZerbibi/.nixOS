@@ -47,7 +47,7 @@
 
   home.packages = with pkgs; [
     hyprpolkitagent
-    hyprlock
+    hypridle
     (callPackage ../../modules/berkeley-mono.nix {})
     (google-fonts.override {
       fonts = [ "EB Garamond" ];

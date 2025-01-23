@@ -6,7 +6,7 @@
     swaynotificationcenter
     pavucontrol
     wlogout
-    hypridle
+    hyprlock
     wofi
   ];
 }
