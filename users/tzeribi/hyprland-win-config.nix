@@ -10,11 +10,6 @@
         "XCURSOR_SIZE=12"
       ];
 
-<<<<<<< Updated upstream
-=======
-      source = "$HOME/.cache/wal/colors-hyprland";
->>>>>>> Stashed changes
-
       monitor = "DP-1, 2560x1440@165, 0x0, 1";
 
       input = {
