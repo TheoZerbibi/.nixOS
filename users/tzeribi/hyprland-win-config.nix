@@ -28,8 +28,8 @@
         gaps_in = 2;
         gaps_out = 15;
         col = {
-          active_border = "$color9";
-          inactive_border = "$color5";
+          active_border = "#f7768e";
+          inactive_border = "#f0c674";
         };
       };
 
@@ -53,7 +53,7 @@
           enabled = true;
           range = 5;
           render_power = 2;
-          color = "$color0";
+          color = "#1e1e2e";
         };
       };
 
