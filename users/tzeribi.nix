@@ -1,5 +1,4 @@
 {
-  home-manager.backupFileExtension = "backup";
 
   imports = [
     ./tzeribi/dev.nix
