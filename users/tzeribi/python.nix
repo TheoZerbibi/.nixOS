@@ -1,16 +1,18 @@
-{pkgs, ...}: {
-  home.packages = [
+{nixpkgs, pkgs, lib, ...}: {
+  home.packages = with nixpkgs.unstable; [
     (pkgs.python3.withPackages (ps: with ps; [
       pip
-      (pkgs.python3Packages.buildPythonPackage {
-        pname = "pywalfox";
-        version = "2.0.11";
-        src = pkgs.fetchPypi {
-          inherit pname version;
-          sha256 = "0gr3rczbd5hj3q6gk10biig8nv3mzxb8k4ywpfzps9y6hrfl9xl6";
-        };
-        propagatedBuildInputs = [ ps.pip ];
-      })
     ]))
   ];
+  home.activation.installPywalfox = {
+    text = ''
+      #!/usr/bin/env bash
+      if ! pip show pywalfox &>/dev/null; then
+        echo "Installing pywalfox..."
+        pip install --user pywalfox
+      fi
+    '';
+    enable = true;
+  };
+
 }
