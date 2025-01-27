@@ -1,6 +1,15 @@
 #!/bin/bash
 WALLPAPER_DIR="$HOME/wallpapers/walls"
 
+hex_to_rgba() {
+    hex="$1"
+    alpha="$2"
+    r=$(printf '%d' 0x${hex:1:2})
+    g=$(printf '%d' 0x${hex:3:2})
+    b=$(printf '%d' 0x${hex:5:2})
+    echo "rgba(${r}, ${g}, ${b}, ${alpha})"
+}
+
 menu() {
     find "${WALLPAPER_DIR}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | awk '{print "img:"$0}'
 }
@@ -51,6 +60,10 @@ main() {
         exit 1
     }
 
+    background_rgba=$(hex_to_rgba "#131b1e" 0.5)
+    color7_rgba=$(hex_to_rgba "#d1e0cb" 0.5)
+    color9_rgba=$(hex_to_rgba "#669165" 0.5)
+
     cat <<EOF > ~/.cache/wal/colors-waybar.css
 :root {
     --color0: ${color0};
@@ -60,9 +73,9 @@ main() {
     --color7: ${color7};
     --color9: ${color9};
     --background: ${background};
-    --background-rgba: ${background/;}/0.5; /* Convertir hex en RGBA */
-    --color7-rgba: ${color7/;}/0.5;
-    --color9-rgba: ${color9/;}/0.5;
+    --background-rgba: $background_rgba;
+    --color7-rgba: $color7_rgba;
+    --color9-rgba: $color9_rgba;
 }
 EOF
 
