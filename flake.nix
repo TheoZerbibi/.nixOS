@@ -27,6 +27,10 @@
       f = {
         map = builtins.mapAttrs;
       };
+      options = {
+        inherit system;
+        config.allowUnfree = true;
+      };
       nixpkgs = {
         stable = import inputs.nixpkgs options;
         unstable = import inputs.nixpkgs-unstable options;
