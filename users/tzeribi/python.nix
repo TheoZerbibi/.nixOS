@@ -6,8 +6,8 @@
         pname = "pywalfox";
         version = "0.3.5";
         src = pkgs.fetchurl {
-          url = "https://files.pythonhosted.org/packages/b7/cc/c31688b9d5d4ddc73d713cde14c5ab09a95046fb0ede2e6fa7ee7e904900/pywolf-0.3.5.tar.gz";
-          sha256 = "371d0d7514d0b72a4beca18b03988ae3699256d09f55ba02409f7661a86968e6";
+          url = "https://github.com/Frewacom/pywalfox/releases/download/v2.0.11/pywalfox-2.0.11.zip";
+          sha256 = "0839e6c003341e192a7be1802fa40d8b05842dad1a3a3beac88f67fba8149dec";
         };
         doCheck = false;
         nativeBuildInputs = [ ps.flit ];
