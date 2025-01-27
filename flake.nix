@@ -51,34 +51,35 @@
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit nixpkgs hostname system state inputs; };
 
-              home-manager.users =
-                f.map (username: {...}: {
-                  home = {
-                    inherit username;
-                    homeDirectory = "/home/${username}";
-                    stateVersion = state;
-                  };
+              home-manager.backupFileExtension = "backup";
 
-                  imports = [
-                    ./users/${username}.nix
-                    catppuccin.homeManagerModules.catppuccin
-                  ];
-                })
-                users;
+              home-manager.users = f.map (username: {...}: {
+                home = {
+                  inherit username;
+                  homeDirectory = "/home/${username}";
+                  stateVersion = state;
+                };
 
-              users.users =
-                f.map (username: {
-                  groups,
-                  shell,
-                }: {
-                  isNormalUser = true;
-                  extraGroups = groups;
-                  shell = nixpkgs.stable.${shell};
-                })
-                users;
+                imports = [
+                  ./users/${username}.nix
+                  catppuccin.homeManagerModules.catppuccin
+                ];
+              })
+              users;
+
+              users.users = f.map (username: {
+                groups,
+                shell,
+              }: {
+                isNormalUser = true;
+                extraGroups = groups;
+                shell = nixpkgs.stable.${shell};
+              })
+              users;
             }
           ];
-        })
+        }
+      )
       hosts;
   };
 }

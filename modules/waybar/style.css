@@ -1,5 +1,14 @@
 @import url("${config.home.homeDirectory}/.cache/wal/colors-waybar.css");
 
+:root {
+    --color0: #1e1e2e;
+    --color4: #c9d1d9;
+    --color5: #f0c674;
+    --color7: #8b949e;
+    --color9: #f7768e;
+    --background: 24, 24, 34;
+  }
+
 * {
     all:unset;
     font-family: 'CodeNewRoman Nerd Font Mono', monospace;
