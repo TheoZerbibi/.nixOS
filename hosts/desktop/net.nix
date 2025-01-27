@@ -1,8 +1,7 @@
-{hostname, ...}: {
-  networking = {
-    hostName = hostname;
-    networkmanager.enable = true;
-  };
+{ config, pkgs, ... }: {
+  networking.hostName = "theo-invisensing";
+
+  networking.networkmanager.enable = true;
 
   services.tailscale = {
     enable = true;
