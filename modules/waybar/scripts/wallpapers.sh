@@ -6,9 +6,6 @@ menu() {
 }
 
 main() {
-cat <<EOF > ~/.cache/wal/dynamic-waybar.css
-@import url('$HOME/.cache/wal/colors-waybar.css');
-EOF
     choice=$(menu | wofi -c ~/.config/wofi/config -s ~/.config/wofi/style.css --show dmenu --prompt "Select Wallpaper:" -n)
     selected_wallpaper=$(echo "$choice" | sed 's/^img://')
 
@@ -63,6 +60,9 @@ EOF
     --color7: ${color7};
     --color9: ${color9};
     --background: ${background};
+    --background-rgba: ${background/;}/0.5; /* Convertir hex en RGBA */
+    --color7-rgba: ${color7/;}/0.5;
+    --color9-rgba: ${color9/;}/0.5;
 }
 EOF
 
