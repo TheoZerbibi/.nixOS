@@ -24,10 +24,4 @@
     git
     wget
   ];
-
-  environment.variables = {
-    EDITOR = "vim";
-    VISUAL = "code";
-    PATH = "${pkgs.home-manager}/bin:${config.environment.systemPackages}/bin";
-  };
 }
