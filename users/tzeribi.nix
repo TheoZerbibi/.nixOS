@@ -2,14 +2,14 @@
   home-manager.backupFileExtension = "backup";
 
   imports = [
-    ./dev.nix
-    ./firefox.nix
-    ./ghostty.nix
-    ./git.nix
-    ./hyprland.nix
-    ./hyprlock.nix
-    ./python.nix
-    ./vscode.nix
-    ./zsh.nix
+    ./tzeribi/dev.nix
+    ./tzeribi/firefox.nix
+    ./tzeribi/ghostty.nix
+    ./tzeribi/git.nix
+    ./tzeribi/hyprland.nix
+    ./tzeribi/hyprlock.nix
+    ./tzeribi/python.nix
+    ./tzeribi/vscode.nix
+    ./tzeribi/zsh.nix
   ];
 }
