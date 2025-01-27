@@ -10,7 +10,7 @@
           sha256 = "371d0d7514d0b72a4beca18b03988ae3699256d09f55ba02409f7661a86968e6";
         };
         doCheck = false;
-        propagatedBuildInputs = [];
+        nativeBuildInputs = [ ps.flit ];
       })
     ]))
   ];
