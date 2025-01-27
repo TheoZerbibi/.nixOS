@@ -80,6 +80,7 @@
       };
 
       exec-once = [
+        "~/.config/waybar/scripts/wallpapers.sh"
         "hypridle"
         "waybar"
         "swww-daemon"

@@ -60,4 +60,5 @@
     font-awesome
     material-design-icons
   ];
+
 }

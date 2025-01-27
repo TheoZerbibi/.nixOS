@@ -18,5 +18,17 @@ main() {
     sed -i "s/^gradient_color_2 = .*/gradient_color_2 = '$color2'/" $cava_config
     pkill -USR2 cava || cava -p $cava_config
     source ~/.cache/wal/colors.sh && cp -r $wallpaper ~/wallpapers/pywallpaper.jpg 
+    
+    ln -sf ~/.cache/wal/colors-waybar.css ~/.cache/wal/colors-hyprland
+
+    echo ":root {" > ~/.cache/wal/colors-waybar.css
+    echo "    --color0: ${color0};" >> ~/.cache/wal/colors-waybar.css
+    echo "    --color1: ${color1};" >> ~/.cache/wal/colors-waybar.css
+    echo "    --color4: ${color4};" >> ~/.cache/wal/colors-waybar.css
+    echo "    --color5: ${color5};" >> ~/.cache/wal/colors-waybar.css
+    echo "    --color7: ${color7};" >> ~/.cache/wal/colors-waybar.css
+    echo "    --color9: ${color9};" >> ~/.cache/wal/colors-waybar.css
+    echo "    --background: ${background};" >> ~/.cache/wal/colors-waybar.css
+    echo "}" >> ~/.cache/wal/colors-waybar.css
 }
 main

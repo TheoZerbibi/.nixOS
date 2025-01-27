@@ -1,8 +1,6 @@
-{hostname, ...}: {
-  networking = {
-    hostName = hostname;
-    networkmanager.enable = true;
-  };
+{ hostname, ... }: {
+  networking.networkmanager.enable = true;
+  networking.networkmanager.wait-online.enable = false;
 
   services.tailscale = {
     enable = true;

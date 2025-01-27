@@ -9,11 +9,7 @@
     catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = inputs @ {
-    home-manager,
-    catppuccin,
-    ...
-  }: {
+  outputs = { self, nixpkgs, home-manager, catppuccin, ... }@inputs: {
     nixosConfigurations = let
       hosts = {
         desktop = {
@@ -37,18 +33,20 @@
         state,
         users,
       }:
-        inputs.nixpkgs.lib.nixosSystem
-        (let
+        nixpkgs.lib.nixosSystem (builtins.fetchGit {
+          url = "https://github.com/NixOS/nixpkgs";
+          rev = "nixos-24.11";
+        }) (let
           options = {
             inherit system;
             config.allowUnfree = true;
           };
           nixpkgs = {
-            stable = import inputs.nixpkgs options;
-            unstable = import inputs.nixpkgs-unstable options;
+            stable = import inputs.nixpkgs { inherit options; };
+            unstable = import inputs.nixpkgs-unstable { inherit options; };
           };
 
-          specialArgs = {inherit nixpkgs hostname system state inputs;};
+          specialArgs = { inherit nixpkgs hostname system state inputs; };
         in {
           inherit system specialArgs;
 
