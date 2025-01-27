@@ -15,7 +15,6 @@
         desktop = {
           system = "x86_64-linux";
           state = "24.11";
-          hostname = "desktop"; # Ajoutez le hostname ici
 
           users = {
             tzeribi = {
@@ -52,7 +51,7 @@
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit nixpkgs hostname system state inputs; };
 
-              backupFileExtension = "backup";
+              home-manager.backupFileExtension = "backup";
 
               home-manager.users = f.map (username: {...}: {
                 home = {
