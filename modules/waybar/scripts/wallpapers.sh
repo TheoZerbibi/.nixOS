@@ -6,6 +6,9 @@ menu() {
 }
 
 main() {
+cat <<EOF > ~/.cache/wal/dynamic-waybar.css
+@import url('$HOME/.cache/wal/colors-waybar.css');
+EOF
     choice=$(menu | wofi -c ~/.config/wofi/config -s ~/.config/wofi/style.css --show dmenu --prompt "Select Wallpaper:" -n)
     selected_wallpaper=$(echo "$choice" | sed 's/^img://')
 
@@ -36,15 +39,15 @@ main() {
         echo "Warning: pywalfox is not installed."
     fi
 
-    if [[ -f ~/.config/cava/config ]]; then
-        color1=$(awk 'match($0, /color2=\47(.*)\47/,a) { print a[1] }' ~/.cache/wal/colors.sh)
-        color2=$(awk 'match($0, /color3=\47(.*)\47/,a) { print a[1] }' ~/.cache/wal/colors.sh)
-        sed -i "s/^gradient_color_1 = .*/gradient_color_1 = '$color1'/" ~/.config/cava/config
-        sed -i "s/^gradient_color_2 = .*/gradient_color_2 = '$color2'/" ~/.config/cava/config
-        pkill -USR2 cava || cava -p ~/.config/cava/config
-    else
-        echo "Warning: Cava config not found."
-    fi
+    # if [[ -f ~/.config/cava/config ]]; then
+    #     color1=$(awk 'match($0, /color2=\47(.*)\47/,a) { print a[1] }' ~/.cache/wal/colors.sh)
+    #     color2=$(awk 'match($0, /color3=\47(.*)\47/,a) { print a[1] }' ~/.cache/wal/colors.sh)
+    #     sed -i "s/^gradient_color_1 = .*/gradient_color_1 = '$color1'/" ~/.config/cava/config
+    #     sed -i "s/^gradient_color_2 = .*/gradient_color_2 = '$color2'/" ~/.config/cava/config
+    #     pkill -USR2 cava || cava -p ~/.config/cava/config
+    # else
+    #     echo "Warning: Cava config not found."
+    # fi
 
     source ~/.cache/wal/colors.sh || {
         echo "Error: Failed to source colors.sh."
