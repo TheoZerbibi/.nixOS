@@ -10,5 +10,6 @@
     wofi
     rofi-wayland
     libnotify
+    home-manager
   ];
 }
