@@ -33,23 +33,8 @@
         state,
         users,
       }:
-        nixpkgs.lib.nixosSystem (builtins.fetchGit {
-          url = "https://github.com/NixOS/nixpkgs";
-          rev = "nixos-24.11";
-        }) (let
-          options = {
-            inherit system;
-            config.allowUnfree = true;
-          };
-          nixpkgs = {
-            stable = import inputs.nixpkgs { inherit options; };
-            unstable = import inputs.nixpkgs-unstable { inherit options; };
-          };
-
-          specialArgs = { inherit nixpkgs hostname system state inputs; };
-        in {
-          inherit system specialArgs;
-
+        nixpkgs.lib.nixosSystem {
+          inherit system;
           modules = [
             ./configuration.nix
             ./hosts/${hostname}.nix
@@ -64,7 +49,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = specialArgs;
+              home-manager.extraSpecialArgs = { inherit nixpkgs hostname system state inputs; };
 
               home-manager.users =
                 f.map (username: {...}: {
@@ -93,7 +78,7 @@
                 users;
             }
           ];
-        }))
+        })
       hosts;
   };
 }
