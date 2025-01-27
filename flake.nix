@@ -46,7 +46,7 @@
             {
               system.stateVersion = state;
               programs.zsh.enable = true;
-              users.defaultUserShell = nixpkgs.stable.zsh
+              users.defaultUserShell = nixpkgs.stable.zsh;
             }
 
             home-manager.nixosModules.home-manager
