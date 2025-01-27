@@ -9,7 +9,11 @@
     catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = { self, nixpkgs, home-manager, catppuccin, ... }@inputs: {
+  outputs = inputs @ {
+    home-manager,
+    catppuccin,
+    ...
+  }: {
     nixosConfigurations = let
       hosts = {
         desktop = {
@@ -27,22 +31,27 @@
       f = {
         map = builtins.mapAttrs;
       };
-      options = {
-        inherit system;
-        config.allowUnfree = true;
-      };
-      nixpkgs = {
-        stable = import inputs.nixpkgs options;
-        unstable = import inputs.nixpkgs-unstable options;
-      };
     in
       f.map (hostname: {
         system,
         state,
         users,
       }:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
+        inputs.nixpkgs.lib.nixosSystem
+        (let
+          options = {
+            inherit system;
+            config.allowUnfree = true;
+          };
+          nixpkgs = {
+            stable = import inputs.nixpkgs options;
+            unstable = import inputs.nixpkgs-unstable options;
+          };
+
+          specialArgs = {inherit nixpkgs hostname system state inputs;};
+        in {
+          inherit system specialArgs;
+
           modules = [
             ./configuration.nix
             ./hosts/${hostname}.nix
@@ -57,37 +66,36 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit nixpkgs hostname system state inputs; };
+              home-manager.extraSpecialArgs = specialArgs;
 
-              home-manager.backupFileExtension = "backup";
+              home-manager.users =
+                f.map (username: {...}: {
+                  home = {
+                    inherit username;
+                    homeDirectory = "/home/${username}";
+                    stateVersion = state;
+                  };
 
-              home-manager.users = f.map (username: {...}: {
-                home = {
-                  inherit username;
-                  homeDirectory = "/home/${username}";
-                  stateVersion = state;
-                };
+                  imports = [
+                    ./users/${username}.nix
+                    catppuccin.homeManagerModules.catppuccin
+                  ];
+                })
+                users;
 
-                imports = [
-                  ./users/${username}.nix
-                  catppuccin.homeManagerModules.catppuccin
-                ];
-              })
-              users;
-
-              users.users = f.map (username: {
-                groups,
-                shell,
-              }: {
-                isNormalUser = true;
-                extraGroups = groups;
-                shell = nixpkgs.stable.${shell};
-              })
-              users;
+              users.users =
+                f.map (username: {
+                  groups,
+                  shell,
+                }: {
+                  isNormalUser = true;
+                  extraGroups = groups;
+                  shell = nixpkgs.stable.${shell};
+                })
+                users;
             }
           ];
-        }
-      )
+        }))
       hosts;
   };
 }
