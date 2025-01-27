@@ -27,6 +27,10 @@
       f = {
         map = builtins.mapAttrs;
       };
+      nixpkgs = {
+        stable = import inputs.nixpkgs options;
+        unstable = import inputs.nixpkgs-unstable options;
+      };
     in
       f.map (hostname: {
         system,
@@ -42,7 +46,7 @@
             {
               system.stateVersion = state;
               programs.zsh.enable = true;
-              users.defaultUserShell = zsh;
+              users.defaultUserShell = nixpkgs.stable.zsh
             }
 
             home-manager.nixosModules.home-manager
