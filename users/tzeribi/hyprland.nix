@@ -8,7 +8,6 @@
 
   catppuccin = {
     enable = true;
-    flavor = "macchiato";
     accent = "teal";
 
     cursors.enable = true;

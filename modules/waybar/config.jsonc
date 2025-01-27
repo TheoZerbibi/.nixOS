@@ -1,4 +1,5 @@
 {
+    "style.css": "/etc/nixos/modules/waybar/style.css",
     "layer": "top",
         "position": "top",
         "reload_style_on_change": true,
