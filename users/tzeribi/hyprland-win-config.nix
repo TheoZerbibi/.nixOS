@@ -3,7 +3,6 @@
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-
     settings = {
       env = [
         "XCURSOR_THEME=Bibata-Modern-Classic"
@@ -11,7 +10,6 @@
       ];
       source = lib.mkDefault "$HOME/.cache/wal/colors-hyprland";
       monitor = "DP-1, 2560x1440@165, 0x0, 1";
-
       input = {
         kb_layout = "us";
         kb_options = "alt_shift_toggle";
@@ -20,25 +18,18 @@
         sensitivity = 0;
         touchpad.natural_scroll = true;
       };
-
       general = {
         layout = "dwindle";
         resize_on_border = true;
         border_size = 1;
         gaps_in = 2;
         gaps_out = 15;
-        col = {
-          active_border = "#f7768e";
-          inactive_border = "#f0c674";
-        };
       };
-
       decoration = {
         rounding = 10;
         active_opacity = 0.8;
         inactive_opacity = 0.7;
         fullscreen_opacity = 1;
-
         blur = {
           enabled = true;
           size = 3;
@@ -48,7 +39,6 @@
           xray = false;
           popups = true;
         };
-
         shadow = {
           enabled = true;
           range = 5;
@@ -56,7 +46,6 @@
           color = "#1e1e2e";
         };
       };
-
       animations = {
         enabled = true;
         bezier = [
@@ -71,14 +60,11 @@
           "specialWorkspace, 1, 5, swirl, slidefadevert -50%"
         ];
       };
-
       dwindle.preserve_split = true;
-
       misc = {
         force_default_wallpaper = 1;
         disable_hyprland_logo = true;
       };
-
       exec-once = [
         "~/.config/waybar/scripts/wallpapers.sh"
         "hypridle"
@@ -90,13 +76,10 @@
         "swaync-client -df"
         "pactl set-sink-mute @DEFAULT_SINK@ 0"
       ];
-
       layerrule = [
         "blur, waybar"
         "ignorezero, waybar"
         "ignorealpha 0.5, waybar"
-        "blur, swaync-control-center"
-        "blur, swaync-notification-window"
         "ignorezero, swaync-control-center"
         "ignorezero, swaync-notification-window"
         "ignorealpha 0.5, swaync-control-center"
