@@ -11,5 +11,7 @@
     rofi-wayland
     libnotify
     home-manager
+    swww
+    cava
   ];
 }
