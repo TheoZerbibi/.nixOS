@@ -9,6 +9,7 @@
         "XCURSOR_SIZE=12"
       ];
       source = lib.mkDefault "$HOME/.cache/wal/colors-hyprland";
+      monitor = "eDP-1, 1920x1080@60, 0x0, 1.5";
       input = {
         kb_layout = "us";
         kb_options = "alt_shift_toggle";
@@ -23,10 +24,6 @@
         border_size = 1;
         gaps_in = 2;
         gaps_out = 15;
-        col = {
-          active_border = "$color9";
-          inactive_border = "$color5";
-        };
       };
       decoration = {
         rounding = 10;
@@ -46,7 +43,7 @@
           enabled = true;
           range = 5;
           render_power = 2;
-          color = "#1e1e2e";
+          color = "rgba(30, 30, 46, 1)";
         };
       };
       animations = {
