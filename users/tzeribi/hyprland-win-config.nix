@@ -23,6 +23,10 @@
         border_size = 1;
         gaps_in = 2;
         gaps_out = 15;
+        col = {
+          active_border = "$color9";
+          inactive_border = "$color5";
+        };
       };
       decoration = {
         rounding = 10;
