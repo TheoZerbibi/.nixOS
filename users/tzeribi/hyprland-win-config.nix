@@ -46,13 +46,6 @@
           color = "#1e1e2e";
         };
       };
-        shadow = {
-          enabled = true;
-          range = 5;
-          render_power = 2;
-          color = "#1e1e2e";
-        };
-      };
       animations = {
         enabled = true;
         bezier = [
