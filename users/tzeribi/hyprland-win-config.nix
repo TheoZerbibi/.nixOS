@@ -9,7 +9,7 @@
         "XCURSOR_SIZE=12"
       ];
       source = lib.mkDefault "$HOME/.cache/wal/colors-hyprland";
-      monitor = "DP-1, 2560x1440@165, 0x0, 1";
+      monitor = "eDP-1, 1920x1080@60, 0x0, 1.5";
       input = {
         kb_layout = "us";
         kb_options = "alt_shift_toggle";
@@ -39,6 +39,13 @@
           xray = false;
           popups = true;
         };
+        shadow = {
+          enabled = true;
+          range = 5;
+          render_power = 2;
+          color = "#1e1e2e";
+        };
+      };
         shadow = {
           enabled = true;
           range = 5;
