@@ -7,7 +7,7 @@
   ];
 
   catppuccin = {
-    enable = true;
+    enable = false;
     accent = "teal";
 
     cursors.enable = true;
@@ -30,6 +30,7 @@
   home.file = lib.mkMerge [
     {
       ".config/waybar/config.jsonc".source = ../../modules/waybar/config.jsonc;
+      ".config/waybar/style.css".source = ../../modules/waybar/style.css;
     }
     {
       ".config/waybar/scripts/colorpicker.sh".source = ../../modules/waybar/scripts/colorpicker.sh;
